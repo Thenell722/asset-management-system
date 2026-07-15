@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .input {
+    @apply w-full rounded-md border border-steel-line bg-paper-card px-3 py-2 text-sm text-ink outline-none transition-colors;
+    @apply focus:border-amber;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-1.5 rounded-md bg-ink-navy px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-ink-light;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-1.5 rounded-md border border-steel-line px-4 py-2 text-sm font-medium text-steel transition-colors hover:bg-paper;
+  }
+
+  .btn-danger-ghost {
+    @apply inline-flex items-center gap-1.5 rounded-md border border-alert-soft px-4 py-2 text-sm font-medium text-alert transition-colors hover:bg-alert-soft;
+  }
+}
+
+body {
+  background-color: #EEF1F0;
+  color: #1B2431;
+}
+
+/* ---- Signature element: manifest tag stat card ----
+   A perforated shipping-tag card: eyebrow stub on top,
+   a dashed tear-line with punched notches, big mono figure below. */
+.manifest-tag {
+  position: relative;
+  background: #FBFCFB;
+  border: 1px solid #D6DBD8;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.manifest-tag__perf {
+  position: relative;
+  border-top: 1.5px dashed #C3CAC6;
+  margin: 0 14px;
+}
+
+.manifest-tag__perf::before,
+.manifest-tag__perf::after {
+  content: '';
+  position: absolute;
+  top: -7px;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: #EEF1F0;
+  border: 1px solid #D6DBD8;
+}
+
+.manifest-tag__perf::before {
+  left: -21px;
+}
+
+.manifest-tag__perf::after {
+  right: -21px;
+}
+
+/* Rubber-stamp style corner badge */
+.stamp {
+  transform: rotate(-6deg);
+  border: 1.5px solid currentColor;
+  border-radius: 4px;
+}
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid #E8A33D;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Thin scrollbar for the nav / tables */
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: #3A4A6B;
+  border-radius: 9999px;
+}
