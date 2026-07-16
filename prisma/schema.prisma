@@ -7,37 +7,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Asset {
-  id              String   @id @default(uuid())
-  assetTag        String   @unique
-  manufacturer    String
-  category        String
-  model           String
-  serialNumber    String   @unique
-  purchaseDate    DateTime
-  warrantyExpiry  DateTime?
-  purchaseCost    Decimal
+  id               String    @id @default(uuid())
+  assetTag         String    @unique
+  manufacturer     String
+  category         String
+  model            String
+  serialNumber     String    @unique
+  purchaseDate     DateTime
+  warrantyExpiry   DateTime?
+  purchaseCost     Decimal
   assignedEmployee String?
-  department      String
-  location        String
-  status          String
-  condition       String
-  notes           String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  department       String
+  location         String
+  status           String
+  condition        String
+  notes            String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   name      String
-  email     String   @unique
+  email     String    @unique
   password  String
-
-  sessions Session[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  sessions  Session[]
 }
 
 model Session {
@@ -45,8 +42,8 @@ model Session {
   token     String   @unique
   userId    String
   expiresAt DateTime
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "Session_userId_fkey")
 }
